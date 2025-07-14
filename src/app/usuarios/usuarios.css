@@ -1,0 +1,71 @@
+/* Estilo general de la tabla */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fefefe;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dce1e6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Encabezado */
+thead {
+  background-color: #e3f2fd; /* Azul pastel */
+  color: #333;
+  font-weight: bold;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  font-size: 15px;
+  border-bottom: 1px solid #cfd8dc;
+}
+
+/* Cuerpo de tabla */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eceff1;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Alternar color de fondo en filas */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover en filas */
+tbody tr:hover {
+  background-color: #f1f8ff;
+  transition: background-color 0.3s ease;
+}
+
+/* Botones */
+button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Botón Editar */
+button:nth-child(1) {
+  background-color: #90caf9; /* Azul claro */
+  color: #083e75;
+}
+
+/* Botón Eliminar */
+button:nth-child(2) {
+  background-color: #f48fb1; /* Rosa suave */
+  color: #7a0b2e;
+}

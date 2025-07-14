@@ -6,11 +6,11 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-user-form',
   imports: [ReactiveFormsModule, FormsModule, CommonModule],
-  templateUrl: './user-form.html'
-
+  templateUrl: './user-form.html',
+  styleUrl: './user-form.css'
 })
 
-export class UserForm implements OnChanges{
+export class UserForm implements OnChanges {
   @Input() user?: User;
   @Output() save = new EventEmitter<User>();
   form: FormGroup;
@@ -25,7 +25,7 @@ export class UserForm implements OnChanges{
     });
   }
 
- ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges) {
     if (changes['user'] && this.user) {
       this.form.patchValue(this.user);
     }
@@ -34,8 +34,14 @@ export class UserForm implements OnChanges{
   onSubmit() {
     if (this.form.valid) {
       this.save.emit(this.form.value);
-      this.form.reset({ id: 0, name: '', address: '', phone: null });  
+      this.form.reset({ id: 0, name: '', address: '', phone: null });
     }
+  }
+
+  onCancel(): void {
+    this.form.reset();
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
   }
 
 }

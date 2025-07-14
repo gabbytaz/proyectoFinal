@@ -2,16 +2,29 @@
   <label for="name">Nombre :
     <input id="name" formControlName="name">
   </label>
+  <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+    <small style="color: red;">El campo name es requerido</small>     
+  </div>
+
   <br /><br />
   <label for="address">Dirección :
     <input id="address" formControlName="address">
   </label>
+  <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid">
+    <small style="color: red;">El campo address es requerido</small>
+  </div>
+
   <br /><br />
   <label for="phone">Teléfono :
     <input id="phone" formControlName="phone" type="number">
   </label>
+  <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
+    <small style="color: red;">El campo phone es requerido</small>
+  </div>
   <br /><br />
-  <button type="submit" [disabled]="!form.valid">Guardar</button>
+  <button type="submit" [disabled]="!form.valid" style="margin: 10px;">Guardar</button> 
+   
+  <button type="button" (click)="onCancel()" style="margin: 10px;">Cancelar</button>
   <br /><br />
 
 </form>
