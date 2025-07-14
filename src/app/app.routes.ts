@@ -3,12 +3,17 @@ import { Usuarios } from './usuarios/usuarios';
 import { Contacto } from './contacto/contacto';
 
 export const routes: Routes = [
-  { path: 'usuarios',
-    component: Usuarios, 
-    title: 'Home' 
+  {
+    path: 'usuarios',
+    loadComponent() {
+      return import('./usuarios/usuarios')
+        .then(m => m.Usuarios);
     },
-  { path: 'contacto', 
-    component: Contacto, 
+    title: 'Home'
+  },
+  {
+    path: 'contacto',
+    component: Contacto,
     title: 'Contact'
-    },
+  },
 ];

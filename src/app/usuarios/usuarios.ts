@@ -1,4 +1,4 @@
-import { Component,EventEmitter,OnInit,Output} from '@angular/core';
+import { ChangeDetectorRef, Component,EventEmitter,OnInit,Output} from '@angular/core';
 import { UserService } from '../services/user';
 import { User } from '../models/user.model';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +15,8 @@ export class Usuarios implements OnInit {
  users: User[] = [];
  selectedUser?: User;
 
-  constructor(private userService: UserService) {
-    this.userService.users$.subscribe(u => this.users = u);
+  constructor(private userService: UserService,private cd:ChangeDetectorRef) {
+    
   }
   
   ngOnInit(): void {
@@ -25,7 +25,9 @@ export class Usuarios implements OnInit {
 
   fetchUsers(): void {
     this.userService.loadUsers().subscribe(users => {
-      this.users = users;
+       this.users = users;
+       console.log('users loaded:', this.users);
+       this.cd.detectChanges();
     });
   }
   
@@ -34,6 +36,7 @@ export class Usuarios implements OnInit {
       this.userService.updateUser(user).subscribe(() => this.fetchUsers());
     } else {
       this.userService.addUser(user).subscribe(() => this.fetchUsers());
+     
     }
     this.selectedUser = undefined;
   }

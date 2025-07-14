@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-form.html'
 
 })
-export class UserForm implements OnChanges {
+
+export class UserForm implements OnChanges{
   @Input() user?: User;
   @Output() save = new EventEmitter<User>();
   form: FormGroup;
@@ -24,7 +25,7 @@ export class UserForm implements OnChanges {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+ ngOnChanges(changes: SimpleChanges) {
     if (changes['user'] && this.user) {
       this.form.patchValue(this.user);
     }
