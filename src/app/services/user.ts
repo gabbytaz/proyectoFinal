@@ -6,8 +6,8 @@ import { User } from '../models/user.model';
 import { environment } from '../../enviroments/enviroments';
 
 
-@Injectable({ 
-  providedIn: 'root' 
+@Injectable({
+  providedIn: 'root'
 })
 
 export class UserService {
@@ -23,20 +23,26 @@ export class UserService {
   }
 
   addUser(user: Omit<User, 'id'>): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/add`, user, { 
-      headers: this.jsonHeaders 
+    return this.http.post<User>(`${this.apiUrl}/add`, user, {
+      headers: this.jsonHeaders
     });
   }
 
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/update/${user.id}`, user, {
-      headers: this.jsonHeaders 
+      headers: this.jsonHeaders
     });
   }
 
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
+
+  /*deleteUser(user: User): Observable<User> {
+   return this.http.delete<User>(`${this.apiUrl}/delete/${user.id}`, {
+     headers: this.jsonHeaders 
+   });
+ }*/
 
   getUserById(id: number): User | undefined {
     return this.users.find(u => u.id === id);
